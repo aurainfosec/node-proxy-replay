@@ -13,6 +13,7 @@
   "dependencies": {
     "hoxy": "*",
     "superagent": "*",
-    "readline": "*"
+    "readline": "*",
+    "colors": "*"
   }
 }
