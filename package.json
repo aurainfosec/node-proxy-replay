@@ -6,8 +6,8 @@
     "name": "Claudio Contin",
     "email": "c.contin@aurainfosec.com"
   },
-  "bin": {
-    "aura-proxy": "./index.js"
+  "scripts": { 
+    "start": "node index"
   },
   "main": "index.js",
   "dependencies": {
