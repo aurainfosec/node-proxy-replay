@@ -23,10 +23,27 @@ rl.question(colors.green('Coookie Header value you want to override? '), (answer
   console.log("");
 
   proxy.intercept({
-    phase: 'request'
-  }, function(req, resp, cycle) {
-    if(reply.replyThis(req)){
-      reply.reply(req, cookie);
-    }
+    phase: 'request',
+    as: 'string'
+  }, function(req, resp, cycle){
+    reply.reply(req, cookie);
   });
 });
+
+// LOCAL SERVER TO TEST
+// var http = require("http");
+// var server = http.createServer(function(request, response){
+//   console.log(" one request ");
+//   var body = [];
+//   request.on('data', function(chunk) {
+//     body.push(chunk);
+//   }).on('end', function() {
+//     body = Buffer.concat(body).toString();
+//     console.log(request.headers);
+//     console.log(body);
+//   });
+//   response.writeHead(200, {"Content-Type": "text/html"});
+//   response.write("******************************");
+//   response.end();
+// });
+// server.listen(80);
