@@ -39,11 +39,12 @@ rl.question(colors.green('Coookie Header value you want to override? '), (answer
 //     body.push(chunk);
 //   }).on('end', function() {
 //     body = Buffer.concat(body).toString();
-//     console.log(request.headers);
-//     console.log(body);
+//     // console.log(request.headers);
+//     // var json = JSON.parse(body);
+//     // console.log(json);
 //   });
 //   response.writeHead(200, {"Content-Type": "text/html"});
-//   response.write("******************************");
+//   // response.write("******************************");
 //   response.end();
 // });
 // server.listen(80);
