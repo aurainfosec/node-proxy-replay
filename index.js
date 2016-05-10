@@ -1,12 +1,12 @@
 var fs = require('fs');
 var colors = require('colors');
 
-var initProxyAfterUserOptions = function(){
+var initProxyAfterUserOptions = function(port){
   var proxy = require('hoxy').createServer({certAuthority: {
     key:  fs.readFileSync('./key.pem'),
     cert: fs.readFileSync('./crt.pem')
-  }}).listen(8090);
-  console.log("Listening on 8090".underline);
+  }}).listen(port);
+  console.log(("Listening on " + port).underline);
   console.log("");
 
   proxy.intercept({

@@ -20,7 +20,6 @@ Import the certificate in trusted certificates.
 NOTE: this is still under development and not fully functional yet.
 
 TODOs:
- - ability to specify listening port
  - ability to inject custom values when posting form data (ex: anti csrf tokens, even tho some frameworks like Rails allows to specify this in a header)
 
  ## Contributing

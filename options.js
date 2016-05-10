@@ -6,11 +6,27 @@ var rl = require('readline').createInterface({
   output: process.stdout
 });
 
+function port(callback){
+  rl.question(colors.green('Which port you want the proxy to listen to? (leave blank for 8090) '), (port) => {
+    if(port === ''){
+      port = 8090;
+    }
+    else{
+      port = parseInt(port);
+      if(port <= 0 || port > 65535){
+        port = 8090;
+      }
+    }
+    rl.close();
+    callback(port); // start the proxy
+    return;
+  });
+}
+
 function headers(callback){
   rl.question(colors.green('What Header KEY you want to override? (leave blank to finish) '), (key) => {
     if(key === ''){
-      rl.close();
-      callback();
+      port(callback); // ask user which port to listen
       return;
     }
     rl.question(colors.green('What VALUE you want to override for Header ' + key + '? '), (val) => {
@@ -27,7 +43,7 @@ module.exports.init = function(callback){
       input.user["domains"] = val.split(',');
     }
     console.log("Domains: " + colors.red(val));
-    headers(callback);
+    headers(callback); // ask user which header to set or override, and which port to listen
     return;
   });
 };
