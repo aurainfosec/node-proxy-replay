@@ -17,9 +17,23 @@ Create the certificate
 Import the certificate in trusted certificates.
 
 
-NOTE: this is still under development and not fully functional yet.
+### NOTE:
+This is still under development and might be not 100% reliable. Please contribute back for issues or features.
 
-TODOs:
+### TODOs:
+ - getting this error when proxying to certain sites. unsure if something to do with websockets, didn't find a solution yet.
+
+ ```
+ Error: socket hang up
+    at createHangUpError (_http_client.js:250:15)
+    at Socket.socketOnEnd (_http_client.js:342:23)
+    at emitNone (events.js:91:20)
+    at Socket.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+ ```
+
  - ability to inject custom values when posting form data (ex: anti csrf tokens, even tho some frameworks like Rails allows to specify this in a header)
 
  ## Contributing
