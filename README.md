@@ -35,6 +35,7 @@ This is still under development and might be not 100% reliable. Please contribut
  ```
 
  - ability to inject custom values when posting form data (ex: anti csrf tokens, even tho some frameworks like Rails allows to specify this in a header)
+ - ability to reply the same request with multiple modified headers
 
  ## Contributing
 

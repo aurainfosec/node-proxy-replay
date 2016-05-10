@@ -7,7 +7,7 @@ var request = require('superagent');
 var db = new sqlite3.Database('./sqlitedb');
 db.serialize(function(){
   db.run("DROP TABLE requests;") // make sure all previous session data is cleared
-  db.run("CREATE TABLE requests (request_method TEXT, request_url TEXT, request_headers BLOB, response_code INTEGER, response_body BLOB);");
+  db.run("CREATE TABLE requests (id INTEGER, request_method TEXT, request_url TEXT, request_headers BLOB, response_code INTEGER, response_body BLOB);");
 });
 
 var replyThis = function(req){
@@ -18,6 +18,8 @@ var replyThis = function(req){
     req.headers.accept.indexOf('json') > -1
   )
 };
+
+var id = 0;
 
 module.exports.reply = function(req){
   if(replyThis(req)){
@@ -30,8 +32,9 @@ module.exports.reply = function(req){
     .send(body)
     .end(function(err, res){
       if(typeof res !== 'undefined'){
-        console.log(colors.red(method) + "  " + (req.hostname + req.url).underline + "  " + colors.green(res.statusCode));
-        db.run("INSERT INTO requests VALUES (?, ?, ?, ?, ?)", method, url, JSON.stringify(modHeaders), res.statusCode, res.text);
+        id++;
+        console.log(colors.green(id) + ") " + colors.red(method) + "  " + (req.hostname + req.url).underline + "  " + colors.green(res.statusCode));
+        db.run("INSERT INTO requests VALUES (?, ?, ?, ?, ?, ?)", id, method, url, JSON.stringify(modHeaders), res.statusCode, res.text);
         console.log("");
       }
     });
