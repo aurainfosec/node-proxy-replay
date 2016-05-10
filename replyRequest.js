@@ -31,7 +31,7 @@ module.exports.reply = function(req){
     .end(function(err, res){
       if(typeof res !== 'undefined'){
         console.log(colors.red(method) + "  " + (req.hostname + req.url).underline + "  " + colors.green(res.statusCode));
-        db.run("INSERT INTO requests VALUES (?, ?, ?, ?, ?)", method, url, modHeaders, res.statusCode, res.text);
+        db.run("INSERT INTO requests VALUES (?, ?, ?, ?, ?)", method, url, JSON.stringify(modHeaders), res.statusCode, res.text);
         console.log("");
       }
     });
