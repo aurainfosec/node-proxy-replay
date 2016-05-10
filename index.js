@@ -9,13 +9,17 @@ var initProxyAfterUserOptions = function(port){
   console.log(("Listening on " + port).underline);
   console.log("");
 
+  proxy.on('error', function (err) {
+    console.log(err);
+  });
+
   proxy.intercept({
     phase: 'request',
     as: 'string'
   }, function(req, resp, cycle){
     require('./replyRequest').reply(req);
   });
-}
+};
 
 require('./options').init(initProxyAfterUserOptions);
 
