@@ -14,15 +14,14 @@ var replyThis = function(req){
 
 module.exports.reply = function(req){
   if(replyThis(req)){
-    console.log(headers.editRequestHeaders(req));
-    // request(req.method, req.protocol + '//' + req.hostname + req.url)
-    // .set(headers.editRequestHeaders(req))
-    // .send(req.string)
-    // .end(function(err, res){
-    //   if(typeof res !== 'undefined'){
-    //     console.log(colors.red(req.method) + "  " + (req.hostname + req.url).underline + "  " + colors.green(res.statusCode));
-    //     console.log("");
-    //   }
-    // });
+    request(req.method, req.protocol + '//' + req.hostname + req.url)
+    .set(headers.editRequestHeaders(req))
+    .send(req.string)
+    .end(function(err, res){
+      if(typeof res !== 'undefined'){
+        console.log(colors.red(req.method) + "  " + (req.hostname + req.url).underline + "  " + colors.green(res.statusCode));
+        console.log("");
+      }
+    });
   }
 };
