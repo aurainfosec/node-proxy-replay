@@ -8,6 +8,8 @@ Requires NodeJS + NPM
 
 Create the key
 ```openssl genrsa -out ./key.pem 2048```
+
+Create the certificate
 ```$ openssl req -x509 -new -nodes -key ./key.pem -days 1024 -out ./crt.pem -subj "/C=US/ST=/L=/O=Node Proxy/CN=auranodeproxy.com"```
 
 Note: this is still under development and not fully functional yet.
