@@ -14,6 +14,8 @@ Create the certificate
 
 ```openssl req -x509 -new -nodes -key ./key.pem -days 1024 -out ./crt.pem -subj "/C=US/ST=/L=/O=Node Proxy/CN=auranodeproxy.com"```
 
+Import the certificate in trusted certificates.
+
 
 NOTE: this is still under development and not fully functional yet.
 
