@@ -1,14 +1,12 @@
-module.exports.editRequestHeaders = function(req, cookie){ // TODO - tidy up this function...
+var input = require('./userInput');
+
+module.exports.editRequestHeaders = function(req){
   var newHeaders = {};
-  for(var val in req.headers){
-    if(val.toLowerCase() === 'cookie'){
-      newHeaders['cookie'] = cookie;
-    }else{
-      newHeaders[val] = req.headers[val];
-    }
+  for(var attr in req.headers){
+    newHeaders[attr] = req.headers[attr];
   }
-  if(typeof newHeaders['cookie'] === 'undefined'){
-    newHeaders['cookie'] = cookie;
+  for(var attr in input.user['headers']){
+    newHeaders[attr] = input.user['headers'][attr];
   }
   return newHeaders;
 }
