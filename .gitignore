@@ -3,3 +3,4 @@ node_modules/*
 sqlitedb
 key.pem
 crt.pem
+npm-debug.log
