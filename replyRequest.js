@@ -1,7 +1,8 @@
-var input = require('./userInput');
-var colors = require('colors');
+var input   = require('./userInput');
+var colors  = require('colors');
 var sqlite3 = require('sqlite3').verbose();
 var headers = require('./headers');
+var body    = require('./body');
 var request = require('superagent');
 
 var db = new sqlite3.Database('./sqlitedb');
@@ -24,12 +25,12 @@ var id = 0;
 module.exports.reply = function(req){
   if(replyThis(req)){
     var method = req.method;
-    var url = req.protocol + '//' + req.hostname + req.url
+    var url = req.protocol + '//' + req.hostname + req.url;
     var modHeaders = headers.editRequestHeaders(req);
-    var body = req.string;
+    var modBody = body.editRequestBody(req);
     request(method, url)
     .set(modHeaders)
-    .send(body)
+    .send(modBody)
     .end(function(err, res){
       if(typeof res !== 'undefined'){
         id++;

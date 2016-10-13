@@ -26,13 +26,27 @@ function port(callback){
 function headers(callback){
   rl.question(colors.green('What Header KEY you want to override? (leave blank to finish) '), (key) => {
     if(key === ''){
-      port(callback); // ask user which port to listen
+      requestBody(callback);
       return;
     }
     rl.question(colors.green('What VALUE you want to override for Header ' + key + '? '), (val) => {
       input.user['headers'][key] = val;
       console.log(key + ": " + colors.red(val));
       headers(callback);
+    });
+  });
+};
+
+function requestBody(callback){
+  rl.question(colors.green('What Body Parameter KEY you add or override? (leave blank to finish) '), (key) => {
+    if(key === ''){
+      port(callback); // ask user which port to listen
+      return;
+    }
+    rl.question(colors.green('What VALUE you want to override for this Parameter ' + key + '? '), (val) => {
+      input.user['bodyParams'][key] = val;
+      console.log(key + ": " + colors.red(val));
+      requestBody(callback);
     });
   });
 };
