@@ -4,6 +4,8 @@ var sqlite3 = require('sqlite3').verbose();
 var headers = require('./headers');
 var body    = require('./body');
 var request = require('superagent');
+require('superagent-proxy')(request);
+var proxy = process.env.http_proxy || null;
 
 var db = new sqlite3.Database('./sqlitedb');
 db.serialize(function(){
@@ -31,6 +33,7 @@ module.exports.reply = function(req){
     request(method, url)
     .set(modHeaders)
     .send(modBody)
+    .proxy(proxy)
     .end(function(err, res){
       if(typeof res !== 'undefined'){
         id++;
