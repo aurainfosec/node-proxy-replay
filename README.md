@@ -34,9 +34,6 @@ This is still under development and might be not 100% reliable. Please contribut
     at process._tickCallback (internal/process/next_tick.js:98:9)
  ```
 
- - ability to inject custom values when posting form data (ex: anti csrf tokens, even tho some frameworks like Rails allows to specify this in a header)
- - ability to reply the same request with multiple modified headers
-
  ## Contributing
 
  1. Fork it ( https://github.com/aurainfosec/node-proxy-replay/fork )
